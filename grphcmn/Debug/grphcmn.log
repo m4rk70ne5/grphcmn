@@ -1,0 +1,46 @@
+﻿Build started 3/1/2014 6:06:36 PM.
+     1>Project "C:\Users\Mark\Documents\Visual Studio 2012\Projects\grphcmn\grphcmn\grphcmn.vcxproj" on node 2 (Build target(s)).
+     1>InitializeBuildStatus:
+         Touching "Debug\grphcmn.unsuccessfulbuild".
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt tMesh.cpp tMeshReader.cpp
+         tMesh.cpp
+     1>c:\users\mark\documents\visual studio 2012\projects\grphcmn\grphcmn\tmesh.cpp(116): warning C4244: '=' : conversion from 'time_t' to 'unsigned int', possible loss of data
+         GLM: angleAxis function taking degrees as a parameter is deprecated. #define GLM_FORCE_RADIANS before including GLM headers to remove this message.
+     1>c:\program files (x86)\microsoft visual studio 11.0\vc\include\glm\gtc\quaternion.inl(61): warning C4244: 'initializing' : conversion from 'const double' to 'float', possible loss of data
+                 c:\users\mark\documents\visual studio 2012\projects\grphcmn\grphcmn\tmesh.cpp(67) : see reference to function template instantiation 'glm::detail::tquat<T,P>::tquat<double,0>(const glm::detail::tquat<double,0> &)' being compiled
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+                 c:\users\mark\documents\visual studio 2012\projects\grphcmn\grphcmn\tmesh.cpp(67) : see reference to function template instantiation 'glm::detail::tquat<T,P>::tquat<double,0>(const glm::detail::tquat<double,0> &)' being compiled
+                 with
+                 [
+                     T=float,
+                     P=0
+                 ]
+         Generating Code...
+         Compiling...
+         tMeshReader.cpp
+         Generating Code...
+       Lib:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\Lib.exe /OUT:"C:\Users\Mark\Documents\Visual Studio 2012\Projects\Demoz\Debug\grphcmn.lib" /NOLOGO Debug\tCamera.obj
+         Debug\tGameClock.obj
+         Debug\tGeometry.obj
+         Debug\tGraphicsController.obj
+         Debug\tInputController.obj
+         Debug\tMesh.obj
+         Debug\tMeshReader.obj
+         Debug\tProgramManager.obj
+         Debug\tQuat.obj
+         Debug\Utility.obj
+         grphcmn.vcxproj -> C:\Users\Mark\Documents\Visual Studio 2012\Projects\Demoz\Debug\grphcmn.lib
+       FinalizeBuildStatus:
+         Deleting file "Debug\grphcmn.unsuccessfulbuild".
+         Touching "Debug\grphcmn.lastbuildstate".
+     1>Done Building Project "C:\Users\Mark\Documents\Visual Studio 2012\Projects\grphcmn\grphcmn\grphcmn.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:07.20
