@@ -10,6 +10,8 @@
 #include <glm/gtc/type_ptr.hpp>
 #include <glm/gtc/quaternion.hpp>
 
+class tBSPFile; // forward
+
 struct tVert
 {
 	float m_data[4];

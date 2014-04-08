@@ -83,9 +83,11 @@
     <ClCompile Include="tMeshReader.cpp" />
     <ClCompile Include="tProgramManager.cpp" />
     <ClCompile Include="tQuat.cpp" />
+    <ClCompile Include="tTextureManager.cpp" />
     <ClCompile Include="Utility.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="SOIL.h" />
     <ClInclude Include="tCamera.h" />
     <ClInclude Include="tGameClock.h" />
     <ClInclude Include="tGeometry.h" />
@@ -97,6 +99,7 @@
     <ClInclude Include="tObject.h" />
     <ClInclude Include="tProgramManager.h" />
     <ClInclude Include="tQuat.h" />
+    <ClInclude Include="tTextureManager.h" />
     <ClInclude Include="tVector.h" />
     <ClInclude Include="Utility.h" />
   </ItemGroup>

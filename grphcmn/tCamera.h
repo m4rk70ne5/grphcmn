@@ -9,6 +9,7 @@
 
 class tCamera : public tObject
 {
+	friend class tBSPTree;
 protected:
 	glm::fquat m_orientation;
 	glm::vec3 m_position, m_upVector, m_view;
@@ -20,6 +21,7 @@ public:
 	int m_dx, m_dy; // mouse movements change
 	glm::mat4 m_transformationMat;
 	tCamera(tVecf pos, tVecf up, tVecf view, float speed);
+	glm::vec3 GetPosition() { return m_position; };
 	virtual void Update(); // translate deltas to changes in position and orientation
 	virtual void Handler(int, bool); // deal with key presses
 	virtual void MouseHandler(int, int, const int&, const int&);

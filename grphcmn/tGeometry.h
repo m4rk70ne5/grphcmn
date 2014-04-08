@@ -11,7 +11,7 @@ class tGeometry
 protected:
 	tGeometry(bool, int&);
 	virtual void Init() {};
-	GLuint m_vertexBuffer, m_indexBuffer;
+	GLuint m_vertexBuffer, m_indexBuffer, m_textureBuffer;
 public:
 	virtual ~tGeometry() {};
 	virtual int GetNumIndices() {return 0;};
