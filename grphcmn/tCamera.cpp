@@ -1,7 +1,10 @@
 #include "tCamera.h"
 #include <SDL2/SDL.h>
+#include <gl/glew.h>
+#include <gl/wglew.h>
+#include <glm/gtc/type_ptr.hpp>
 
-tCamera::tCamera(tVecf pos, tVecf up, tVecf view, float speed) : m_speed(speed)
+tCamera::tCamera(tVecf pos, tVecf up, tVecf view, float speed, bool block) : m_speed(speed), m_Block(block)
 {
 	m_dx = 0;
 	m_dy = 0;
@@ -116,4 +119,20 @@ void tCamera::MouseHandler(int x, int y, const int& maxX, const int& maxY)
 	m_dy = y - centerY;
 
 	SDL_WarpMouseInWindow(NULL, centerX, centerY);
+}
+
+void tCamera::SetCamUniform(int prog, std::string name)
+{
+	// set the camera matrix
+	if (!m_Block)
+	{
+		GLint camLoc = glGetUniformLocation(prog, name.c_str());
+		glProgramUniformMatrix4fv(prog, camLoc, 1, GL_FALSE, glm::value_ptr(m_transformationMat));
+	}
+	else
+	{
+		glBindBuffer(GL_UNIFORM_BUFFER, m_blockUBO);
+		glBufferSubData(GL_UNIFORM_BUFFER, 0, sizeof(glm::mat4), glm::value_ptr(m_transformationMat));
+		glBindBuffer(GL_UNIFORM_BUFFER, 0);
+	}
 }

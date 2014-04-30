@@ -7,12 +7,13 @@
 #include <math.h>
 
 template<typename T>
-T RandomNum(T min, T max)
+T RandomNum(T min, T max, unsigned int offset)
 {
 	// finds a position for the cube, between min and max
 	using namespace std;
 
 	time_t seed_val = time(NULL);
+	seed_val += offset;
 	// set up random number generator
 	default_random_engine randGen;
 	uniform_real_distribution<T> distribution(min, max);
@@ -20,6 +21,15 @@ T RandomNum(T min, T max)
 	randGen.seed(seed_val);
 	// generate numbers
 	return distribution(randGen);
+}
+
+template<typename T>
+T RandomNum(T min, T max)
+{
+	// finds a position for the cube, between min and max
+	using namespace std;
+
+	return RandomNum(min, max, 0);
 }
 
 inline double to_rad(float degrees) {

@@ -1,6 +1,7 @@
 #include "tGraphicsController.h"
 #include "tProgramManager.h"
 #include "tGeometry.h"
+#include "tCamera.h"
 #include <gl/glew.h>
 #include <gl/wglew.h>
 #include <glm/gtc/type_ptr.hpp>
@@ -25,6 +26,7 @@ tGraphicsController::~tGraphicsController()
 
 	m_instance = NULL;
 }
+
 void tGraphicsController::Draw(std::map<int, std::vector<tGeometry*>>& geometry, std::map<int, std::string>& vaoProg)
 {
 	// cycle through vector of drawable objects (tGeometry)
@@ -39,8 +41,7 @@ void tGraphicsController::Draw(std::map<int, std::vector<tGeometry*>>& geometry,
 		glUseProgram(prog);
 		
 		// set the camera matrix
-		GLint camLoc = glGetUniformLocation(prog, "camera");
-		glProgramUniformMatrix4fv(prog, camLoc, 1, GL_FALSE, glm::value_ptr(*m_camMat));
+		m_pCam->SetCamUniform(prog, "camera");
 		
 		// cycle through meshes
 		for (auto j = i->second.begin(); j != i->second.end(); j++)
@@ -88,6 +89,9 @@ void tGraphicsController::Initialize(const char* title, int width, int height)
 	glEnable(GL_CULL_FACE);
     glCullFace(GL_BACK);
     glFrontFace(GL_CW);
+
+	// line width
+	glLineWidth(2.0);
 
 	// glviewport
 	glViewport(0, 0, width, height);

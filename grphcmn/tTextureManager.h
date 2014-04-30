@@ -31,6 +31,7 @@ protected:
 	tImage* LoadTGA(const char*);
 public:
 	tTextureManager();
+	~tTextureManager();
 	static tTextureManager* GetTextureManager();
 	bool AddTexture(string, string, string); //string will usually be external texture file name
 	int GetTexture(string); //return the ID of the texture name

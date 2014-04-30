@@ -81,6 +81,8 @@
     <ClCompile Include="tInputController.cpp" />
     <ClCompile Include="tMesh.cpp" />
     <ClCompile Include="tMeshReader.cpp" />
+    <ClCompile Include="tModeToggler.cpp" />
+    <ClCompile Include="tOctree.cpp" />
     <ClCompile Include="tProgramManager.cpp" />
     <ClCompile Include="tQuat.cpp" />
     <ClCompile Include="tTextureManager.cpp" />
@@ -96,7 +98,9 @@
     <ClInclude Include="tMatrix.h" />
     <ClInclude Include="tMesh.h" />
     <ClInclude Include="tMeshReader.h" />
+    <ClInclude Include="tModeToggler.h" />
     <ClInclude Include="tObject.h" />
+    <ClInclude Include="tOctree.h" />
     <ClInclude Include="tProgramManager.h" />
     <ClInclude Include="tQuat.h" />
     <ClInclude Include="tTextureManager.h" />

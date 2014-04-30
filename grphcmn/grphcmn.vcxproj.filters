@@ -63,6 +63,12 @@
     <ClInclude Include="SOIL.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="tModeToggler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tOctree.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="tInputController.cpp">
@@ -96,6 +102,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="tTextureManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tModeToggler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tOctree.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

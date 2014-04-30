@@ -17,6 +17,11 @@ tTextureManager* tTextureManager::GetTextureManager()
 	return m_instance;
 }
 
+tTextureManager::~tTextureManager()
+{
+	m_instance = NULL;
+}
+
 tImage* tTextureManager::LoadTGA(const char *strFileName)
 {
 	tImage *pImageData = NULL;			// This stores our important image data
