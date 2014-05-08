@@ -3,6 +3,7 @@
 
 #include <gl/glew.h>
 #include <gl/wglew.h>
+#include "CollisionTypes.h"
 
 struct tVert;
 
@@ -18,6 +19,7 @@ public:
 	virtual int GetNumIndices() {return 0;};
 	virtual void SetUniforms(int) {};
 	virtual void Draw(int);
+	virtual void RecordCollisionPoint(glm::vec3, glm::vec3, tCollisionData&) {};
 };
 
 #endif

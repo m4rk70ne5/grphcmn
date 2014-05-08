@@ -74,6 +74,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CollisionTypes.cpp" />
     <ClCompile Include="tCamera.cpp" />
     <ClCompile Include="tGameClock.cpp" />
     <ClCompile Include="tGeometry.cpp" />
@@ -89,6 +90,7 @@
     <ClCompile Include="Utility.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CollisionTypes.h" />
     <ClInclude Include="SOIL.h" />
     <ClInclude Include="tCamera.h" />
     <ClInclude Include="tGameClock.h" />

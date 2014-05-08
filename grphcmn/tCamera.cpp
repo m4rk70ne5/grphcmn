@@ -1,10 +1,13 @@
 #include "tCamera.h"
+#include "tGeometry.h"
 #include <SDL2/SDL.h>
 #include <gl/glew.h>
 #include <gl/wglew.h>
 #include <glm/gtc/type_ptr.hpp>
+#include <glm/geometric.hpp>
 
-tCamera::tCamera(tVecf pos, tVecf up, tVecf view, float speed, bool block) : m_speed(speed), m_Block(block)
+tCamera::tCamera(tVecf pos, tVecf up, tVecf view, float speed, bool block, float radius) : m_speed(speed), m_Block(block), 
+	m_radius(radius)
 {
 	m_dx = 0;
 	m_dy = 0;
@@ -12,6 +15,7 @@ tCamera::tCamera(tVecf pos, tVecf up, tVecf view, float speed, bool block) : m_s
 	m_position = glm::vec3(pos.x, pos.y, pos.z);
 	m_upVector = m_originalUp = glm::vec3(up.x, up.y, up.z);
 	m_view = m_originalView = glm::vec3(view.x, view.y, view.z);
+	// radius for collisions
 }
 
 void tCamera::Update()
@@ -61,6 +65,8 @@ void tCamera::Update()
 		m_upVector = glm::normalize(glm::axis(rotateUp));
 	}
 
+	glm::vec3 origPosition = m_position; // save the original position
+	glm::vec3 destPosition = origPosition;
 	// left/right movement
 	if (m_dtLeft || m_dtRight)
 	{
@@ -68,12 +74,12 @@ void tCamera::Update()
 		// left
 		if (m_dtLeft)
 		{
-			m_position -= strafeVec * m_speed;
+			destPosition -= strafeVec * m_speed;
 		}
 		// right
 		else if (m_dtRight)
 		{
-			m_position += strafeVec * m_speed;
+			destPosition += strafeVec * m_speed;
 		}
 	}
 	// forward/backward
@@ -82,14 +88,22 @@ void tCamera::Update()
 		// move forward
 		if (m_dtForward)
 		{
-			m_position += m_view * m_speed;
+			destPosition += m_view * m_speed;
 		}
 
 		// move backward
 		else if (m_dtBack)
 		{	
-			m_position -= m_view * m_speed;
+			destPosition -= m_view * m_speed;
 		}
+	}
+
+	// do collision detection here
+	// cycle through all the "collidable" geometry (octree and bsp)
+	if (destPosition - origPosition != glm::vec3(0,0,0))
+	{
+		tCollisionData cd(origPosition);
+		m_position = DetectCollision(origPosition, destPosition, cd);
 	}
 
 	// set translation components of camTranslationMat
@@ -135,4 +149,47 @@ void tCamera::SetCamUniform(int prog, std::string name)
 		glBufferSubData(GL_UNIFORM_BUFFER, 0, sizeof(glm::mat4), glm::value_ptr(m_transformationMat));
 		glBindBuffer(GL_UNIFORM_BUFFER, 0);
 	}
+}
+
+glm::vec3 tCamera::DetectCollision(glm::vec3 start, glm::vec3 end, tCollisionData& cd)
+{
+	// find the closest hit
+	glm::vec3 collisionPoint = end;
+	for (auto i = m_collidableGeo.begin(); i != m_collidableGeo.end(); i++)
+	{
+		(*i)->RecordCollisionPoint(start, collisionPoint, cd);
+		collisionPoint = start + (cd.m_closestHit * (collisionPoint - start));
+	}
+
+	return collisionPoint;
+	// if no hit, return the end position
+	if (collisionPoint == end)
+		return end;
+
+   // respond here
+   else
+   {
+       glm::vec3 newEnd = end + (glm::dot((collisionPoint - end), cd.m_plane.m_normal) * cd.m_plane.m_normal);
+       // the reason it is x1 - x2 and not x2 - x1 is because in order to dot product them, the normal vector and the velocity 
+       // vector must be pointing in the same general direction (towards the plane)]
+
+	   // clear cd
+	   tCollisionData newCd(collisionPoint); // new cd
+       // recurse
+       return DetectCollision(collisionPoint, newEnd, newCd);
+   }
+}
+
+void tCamera::SetCamPosition(glm::vec3 pos)
+{
+	m_position = pos;
+
+	// set translation components of camTranslationMat
+	// inverted camera positions
+	glm::mat4 transMat, rotMat;
+	transMat[3] = glm::vec4(-m_position.x, -m_position.y, -m_position.z, 1.0f);
+	// and set the camera translation matrix
+	// the inverse of the m_orientation quaternion
+	rotMat = glm::mat4_cast(glm::inverse(m_orientation));
+	m_transformationMat = rotMat * transMat; // inverse order
 }

@@ -1,125 +1,31 @@
-﻿Build started 4/28/2014 9:47:56 PM.
-     1>Project "C:\Users\Mark\Documents\Visual Studio 2012\Projects\grphcmn\grphcmn\grphcmn.vcxproj" on node 3 (Rebuild target(s)).
-     1>_PrepareForClean:
-         Deleting file "Debug\grphcmn.lastbuildstate".
-       InitializeBuildStatus:
+﻿Build started 5/7/2014 10:13:42 PM.
+     1>Project "C:\Users\Mark\documents\visual studio 2012\Projects\grphcmn\grphcmn\grphcmn.vcxproj" on node 2 (Build target(s)).
+     1>InitializeBuildStatus:
          Creating "Debug\grphcmn.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt tCamera.cpp tGameClock.cpp tGeometry.cpp tGraphicsController.cpp tInputController.cpp tMesh.cpp tMeshReader.cpp tModeToggler.cpp tOctree.cpp tProgramManager.cpp tQuat.cpp tTextureManager.cpp Utility.cpp
-         Utility.cpp
-         tTextureManager.cpp
-     1>c:\users\mark\documents\visual studio 2012\projects\grphcmn\grphcmn\ttexturemanager.cpp(38): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdio.h(218) : see declaration of 'fopen'
-         tQuat.cpp
-     1>c:\users\mark\documents\visual studio 2012\projects\grphcmn\grphcmn\tquat.cpp(32): warning C4244: '/=' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\mark\documents\visual studio 2012\projects\grphcmn\grphcmn\tquat.cpp(33): warning C4244: '/=' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\mark\documents\visual studio 2012\projects\grphcmn\grphcmn\tquat.cpp(34): warning C4244: '/=' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\mark\documents\visual studio 2012\projects\grphcmn\grphcmn\tquat.cpp(46): warning C4244: '=' : conversion from 'const double' to 'float', possible loss of data
-     1>c:\users\mark\documents\visual studio 2012\projects\grphcmn\grphcmn\tquat.cpp(47): warning C4244: '=' : conversion from 'const double' to 'float', possible loss of data
-     1>c:\users\mark\documents\visual studio 2012\projects\grphcmn\grphcmn\tquat.cpp(48): warning C4244: '=' : conversion from 'const double' to 'float', possible loss of data
-     1>c:\users\mark\documents\visual studio 2012\projects\grphcmn\grphcmn\tquat.cpp(78): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\mark\documents\visual studio 2012\projects\grphcmn\grphcmn\tquat.cpp(79): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\mark\documents\visual studio 2012\projects\grphcmn\grphcmn\tquat.cpp(80): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\mark\documents\visual studio 2012\projects\grphcmn\grphcmn\tquat.cpp(82): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\mark\documents\visual studio 2012\projects\grphcmn\grphcmn\tquat.cpp(83): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\mark\documents\visual studio 2012\projects\grphcmn\grphcmn\tquat.cpp(84): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\mark\documents\visual studio 2012\projects\grphcmn\grphcmn\tvector.h(86): warning C4244: '*=' : conversion from 'double' to 'float', possible loss of data
-                 c:\users\mark\documents\visual studio 2012\projects\grphcmn\grphcmn\tvector.h(161) : see reference to function template instantiation 'tVec<T> &tVec<T>::operator *=<U>(U)' being compiled
-                 with
-                 [
-                     T=float,
-                     U=double
-                 ]
-                 c:\users\mark\documents\visual studio 2012\projects\grphcmn\grphcmn\tvector.h(161) : see reference to function template instantiation 'tVec<T> &tVec<T>::operator *=<U>(U)' being compiled
-                 with
-                 [
-                     T=float,
-                     U=double
-                 ]
-                 c:\users\mark\documents\visual studio 2012\projects\grphcmn\grphcmn\tquat.cpp(6) : see reference to function template instantiation 'tVec<T> operator *<float,double>(const tVec<T> &,U)' being compiled
-                 with
-                 [
-                     T=float,
-                     U=double
-                 ]
-     1>c:\users\mark\documents\visual studio 2012\projects\grphcmn\grphcmn\tvector.h(87): warning C4244: '*=' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\mark\documents\visual studio 2012\projects\grphcmn\grphcmn\tvector.h(88): warning C4244: '*=' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\mark\documents\visual studio 2012\projects\grphcmn\grphcmn\tvector.h(89): warning C4244: '*=' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\mark\documents\visual studio 2012\projects\grphcmn\grphcmn\tvector.h(95): warning C4244: '/=' : conversion from 'double' to 'float', possible loss of data
-                 c:\users\mark\documents\visual studio 2012\projects\grphcmn\grphcmn\tvector.h(169) : see reference to function template instantiation 'tVec<T> &tVec<T>::operator /=<U>(U)' being compiled
-                 with
-                 [
-                     T=float,
-                     U=double
-                 ]
-                 c:\users\mark\documents\visual studio 2012\projects\grphcmn\grphcmn\tvector.h(169) : see reference to function template instantiation 'tVec<T> &tVec<T>::operator /=<U>(U)' being compiled
-                 with
-                 [
-                     T=float,
-                     U=double
-                 ]
-                 c:\users\mark\documents\visual studio 2012\projects\grphcmn\grphcmn\tquat.cpp(56) : see reference to function template instantiation 'tVec<T> operator /<float,double>(const tVec<T> &,U)' being compiled
-                 with
-                 [
-                     T=float,
-                     U=double
-                 ]
-     1>c:\users\mark\documents\visual studio 2012\projects\grphcmn\grphcmn\tvector.h(96): warning C4244: '/=' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\mark\documents\visual studio 2012\projects\grphcmn\grphcmn\tvector.h(97): warning C4244: '/=' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\mark\documents\visual studio 2012\projects\grphcmn\grphcmn\tvector.h(98): warning C4244: '/=' : conversion from 'double' to 'float', possible loss of data
-         tProgramManager.cpp
-         tOctree.cpp
-     1>c:\users\mark\documents\visual studio 2012\projects\grphcmn\grphcmn\toctree.cpp(96): warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
-     1>c:\users\mark\documents\visual studio 2012\projects\grphcmn\grphcmn\toctree.cpp(97): warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
-     1>c:\users\mark\documents\visual studio 2012\projects\grphcmn\grphcmn\toctree.cpp(161): warning C4018: '<' : signed/unsigned mismatch
-         tModeToggler.cpp
-     1>c:\users\mark\documents\visual studio 2012\projects\grphcmn\grphcmn\tmodetoggler.cpp(33): warning C4800: 'const Uint8' : forcing value to bool 'true' or 'false' (performance warning)
-         tMeshReader.cpp
-         tMesh.cpp
-     1>c:\users\mark\documents\visual studio 2012\projects\grphcmn\grphcmn\tmesh.cpp(140): warning C4244: '=' : conversion from 'time_t' to 'unsigned int', possible loss of data
-         GLM: angleAxis function taking degrees as a parameter is deprecated. #define GLM_FORCE_RADIANS before including GLM headers to remove this message.
-     1>c:\program files (x86)\microsoft visual studio 11.0\vc\include\glm\gtc\quaternion.inl(61): warning C4244: 'initializing' : conversion from 'const double' to 'float', possible loss of data
-                 c:\users\mark\documents\visual studio 2012\projects\grphcmn\grphcmn\tmesh.cpp(92) : see reference to function template instantiation 'glm::detail::tquat<T,P>::tquat<double,0>(const glm::detail::tquat<double,0> &)' being compiled
-                 with
-                 [
-                     T=float,
-                     P=0
-                 ]
-                 c:\users\mark\documents\visual studio 2012\projects\grphcmn\grphcmn\tmesh.cpp(92) : see reference to function template instantiation 'glm::detail::tquat<T,P>::tquat<double,0>(const glm::detail::tquat<double,0> &)' being compiled
-                 with
-                 [
-                     T=float,
-                     P=0
-                 ]
-         tInputController.cpp
-         tGraphicsController.cpp
-         tGeometry.cpp
-         tGameClock.cpp
-     1>c:\users\mark\documents\visual studio 2012\projects\grphcmn\grphcmn\tgameclock.cpp(8): warning C4244: '=' : conversion from 'Uint32' to 'float', possible loss of data
-     1>c:\users\mark\documents\visual studio 2012\projects\grphcmn\grphcmn\tgameclock.cpp(9): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\mark\documents\visual studio 2012\projects\grphcmn\grphcmn\tgameclock.cpp(10): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt tCamera.cpp
          tCamera.cpp
-     1>c:\users\mark\documents\visual studio 2012\projects\grphcmn\grphcmn\tcamera.cpp(20): warning C4800: 'const Uint8' : forcing value to bool 'true' or 'false' (performance warning)
-     1>c:\users\mark\documents\visual studio 2012\projects\grphcmn\grphcmn\tcamera.cpp(21): warning C4800: 'const Uint8' : forcing value to bool 'true' or 'false' (performance warning)
      1>c:\users\mark\documents\visual studio 2012\projects\grphcmn\grphcmn\tcamera.cpp(22): warning C4800: 'const Uint8' : forcing value to bool 'true' or 'false' (performance warning)
      1>c:\users\mark\documents\visual studio 2012\projects\grphcmn\grphcmn\tcamera.cpp(23): warning C4800: 'const Uint8' : forcing value to bool 'true' or 'false' (performance warning)
+     1>c:\users\mark\documents\visual studio 2012\projects\grphcmn\grphcmn\tcamera.cpp(24): warning C4800: 'const Uint8' : forcing value to bool 'true' or 'false' (performance warning)
+     1>c:\users\mark\documents\visual studio 2012\projects\grphcmn\grphcmn\tcamera.cpp(25): warning C4800: 'const Uint8' : forcing value to bool 'true' or 'false' (performance warning)
          GLM: angleAxis function taking degrees as a parameter is deprecated. #define GLM_FORCE_RADIANS before including GLM headers to remove this message.
      1>c:\program files (x86)\microsoft visual studio 11.0\vc\include\glm\gtc\quaternion.inl(61): warning C4244: 'initializing' : conversion from 'const double' to 'float', possible loss of data
-                 c:\users\mark\documents\visual studio 2012\projects\grphcmn\grphcmn\tcamera.cpp(46) : see reference to function template instantiation 'glm::detail::tquat<T,P>::tquat<double,0>(const glm::detail::tquat<double,0> &)' being compiled
+                 c:\users\mark\documents\visual studio 2012\projects\grphcmn\grphcmn\tcamera.cpp(48) : see reference to function template instantiation 'glm::detail::tquat<T,P>::tquat<double,0>(const glm::detail::tquat<double,0> &)' being compiled
                  with
                  [
                      T=float,
                      P=0
                  ]
-                 c:\users\mark\documents\visual studio 2012\projects\grphcmn\grphcmn\tcamera.cpp(46) : see reference to function template instantiation 'glm::detail::tquat<T,P>::tquat<double,0>(const glm::detail::tquat<double,0> &)' being compiled
+                 c:\users\mark\documents\visual studio 2012\projects\grphcmn\grphcmn\tcamera.cpp(48) : see reference to function template instantiation 'glm::detail::tquat<T,P>::tquat<double,0>(const glm::detail::tquat<double,0> &)' being compiled
                  with
                  [
                      T=float,
                      P=0
                  ]
-         Generating Code...
        Lib:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\Lib.exe /OUT:"C:\Users\Mark\Documents\Visual Studio 2012\Projects\Demoz\Debug\grphcmn.lib" /NOLOGO Debug\tCamera.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\Lib.exe /OUT:"C:\Users\Mark\documents\visual studio 2012\Projects\Demoz\Debug\grphcmn.lib" /NOLOGO Debug\CollisionTypes.obj
+         Debug\tCamera.obj
          Debug\tGameClock.obj
          Debug\tGeometry.obj
          Debug\tGraphicsController.obj
@@ -132,12 +38,12 @@
          Debug\tQuat.obj
          Debug\tTextureManager.obj
          Debug\Utility.obj
-         grphcmn.vcxproj -> C:\Users\Mark\Documents\Visual Studio 2012\Projects\Demoz\Debug\grphcmn.lib
+         grphcmn.vcxproj -> C:\Users\Mark\documents\visual studio 2012\Projects\Demoz\Debug\grphcmn.lib
        FinalizeBuildStatus:
          Deleting file "Debug\grphcmn.unsuccessfulbuild".
          Touching "Debug\grphcmn.lastbuildstate".
-     1>Done Building Project "C:\Users\Mark\Documents\Visual Studio 2012\Projects\grphcmn\grphcmn\grphcmn.vcxproj" (Rebuild target(s)).
+     1>Done Building Project "C:\Users\Mark\documents\visual studio 2012\Projects\grphcmn\grphcmn\grphcmn.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:28.49
+Time Elapsed 00:00:04.40
