@@ -23,11 +23,12 @@ float IntersectRayPlane(tPlane plane, glm::vec3 start, glm::vec3 end)
 
 glm::vec3 ClosestPointOnLine(const glm::vec3& start, const glm::vec3& end, const glm::vec3& point)
 {
-	glm::vec3 d = glm::normalize(end - start);
+	float velMag = glm::length(end - start);
+	glm::vec3 d = (end - start) / velMag; // normalize
 	float t = glm::dot(d, (point - start));
 	// clamp it so that it falls within the line
 	// if t is +, make it the end point that is the closest
 	// else, make it the start point
-	glm::clamp(t, 0.0f, 1.0f);
+	t = glm::clamp(t, 0.0f, velMag);
 	return (start + (t * d));
 }

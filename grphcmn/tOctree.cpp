@@ -41,6 +41,9 @@ tOctree::tOctree(std::vector<tMesh*>& meshes, int& vao) : tGeometry(true, vao)
 			min = bb.ComputeMin(min);
 		}
 	}
+	// offset the min and max so you don't accidentally overstep bounds
+	min -= glm::vec3(5.0f, 5.0f, 5.0f);
+	max += glm::vec3(5.0f, 5.0f, 5.0f);
 	// set the root box's min and max
 	SetExtents(&m_root, min, max);
 	
@@ -114,7 +117,7 @@ void tOctree::Insert(tMesh* pMesh, tOctreeNode* parent)
 		   }
 		   // move
 		   // now figure out where old and new meshes should go
-		   for (size_t s = 0; s < parent->m_data.size(); s++)
+		   while (!parent->m_data.empty())
 		   {
 				tMesh* pOld = parent->m_data.back();
 				// figure out which sub-quadrant(s) this should go into
@@ -327,11 +330,14 @@ void tOctree::RecordCollisionPointW(glm::vec3 start, glm::vec3 end, tCollisionDa
 	else
 	{
 		// detecting collision isn't too difficult with AABB's...
-		for (auto i = pNode->m_data.begin(); i != pNode->m_data.end(); i++)
+		for (auto i = pNode->m_data.begin(); i != pNode->m_data.end(); )
 		{
 			// convert min and max coordinates by multiplying it by the translation matrix?  check
 			glm::vec3 maxPt = glm::vec3((*i)->m_boundingBox.m_worldMat * glm::vec4((*i)->m_boundingBox.m_max, 1.0));
 			glm::vec3 minPt = glm::vec3((*i)->m_boundingBox.m_worldMat * glm::vec4((*i)->m_boundingBox.m_min, 1.0));
+			glm::vec3 offset = glm::vec3(cd.m_offset, cd.m_offset, cd.m_offset);
+			maxPt += offset;
+			minPt -= offset;
 			glm::vec3 center = (maxPt + minPt) / 2.0f; // optimization:  store this as part of bounding box data
 
 			// does the ray pass through the box?
@@ -344,51 +350,71 @@ void tOctree::RecordCollisionPointW(glm::vec3 start, glm::vec3 end, tCollisionDa
 				float closest = 0.0f;
 				std::pair<glm::vec3, float> closestCollision;
 				int x = -1 * (start.x <= minPt.x) + (start.x >= maxPt.x);
-				int y = -1 * (start.y <= minPt.y) + (start.x >= maxPt.y);
+				int y = -1 * (start.y <= minPt.y) + (start.y >= maxPt.y);
 				int z = -1 * (start.z <= minPt.z) + (start.z >= maxPt.z);
 				
-				// check which side (x, y, or z) was actually hit
-				if (x != 0)
+				if (x == 0 && y == 0 && z == 0)
 				{
-					float dist;
-					if (x == 1)
-					{
-						dist = pointOnRay.x - maxPt.x;
-					}
-					else if (x == -1)
-					{
-						dist = pointOnRay.x - minPt.x;
-					}
-					float distToOrig = pointOnRay.x - cd.m_rayOrig.x;
-					CalculateSideHit(glm::vec3(x, 0.0, 0.0), dist, closest, distToOrig, closestCollision);
+					// we got inside the box by mistake
+					// (hopefully by floating point precision error)
+					// shoot the ray backwards, finding the new starting spot
+					// the smallest (the negative) distance wins,
+					// and the smallest ratio wins
+					float xRatio = (GetOutOfBox(minPt.x, maxPt.x, start.x, vel.x) - start.x) / -vel.x;
+					float yRatio = (GetOutOfBox(minPt.y, maxPt.y, start.y, vel.y) - start.y) / -vel.y;
+					float zRatio = (GetOutOfBox(minPt.z, maxPt.z, start.z, vel.z) - start.z) / -vel.z;
+					float finalRatio = glm::min(xRatio, glm::min(yRatio, zRatio));
+					start += -vel * finalRatio;
+					// now do the whole thing over again
+					continue;
 				}
-				if (y != 0)
+				else
 				{
-					float dist;
-					if (y == 1)
+					// check which side (x, y, or z) was actually hit
+					if (x != 0)
 					{
-						dist = pointOnRay.y - maxPt.y;
+						float dist; // determines the last plane the ray passes through
+						if (x == 1)
+						{
+							// right
+							dist = pointOnRay.x - maxPt.x; // dist should be negative
+						}
+						else if (x == -1)
+						{
+							// left
+							dist = pointOnRay.x - minPt.x; // dist should be positive
+						}
+						float distToOrig = pointOnRay.x - cd.m_rayOrig.x;
+						CalculateSideHit(glm::vec3(x, 0.0, 0.0), dist, closest, distToOrig, cd.m_velocity.x, closestCollision);
 					}
-					else if (y == -1)
+					if (y != 0)
 					{
-						dist = pointOnRay.y - minPt.y;
+						float dist;
+						if (y == 1)
+						{
+							dist = pointOnRay.y - maxPt.y;
+						}
+						else if (y == -1)
+						{
+							dist = pointOnRay.y - minPt.y;
+						}
+						float distToOrig = pointOnRay.y - cd.m_rayOrig.y;
+						CalculateSideHit(glm::vec3(0.0, y, 0.0), dist, closest, distToOrig, cd.m_velocity.y, closestCollision);
 					}
-					float distToOrig = pointOnRay.y - cd.m_rayOrig.y;
-					CalculateSideHit(glm::vec3(0.0, y, 0.0), dist, closest, distToOrig, closestCollision);
-				}
-				if (z !=0)
-				{
-					float dist;
-					if (z == 1)
+					if (z !=0)
 					{
-						dist = pointOnRay.z - maxPt.z;
+						float dist;
+						if (z == 1)
+						{
+							dist = pointOnRay.z - maxPt.z;
+						}
+						else if (z == -1)
+						{
+							dist = pointOnRay.z - minPt.z;
+						}
+						float distToOrig = pointOnRay.z - cd.m_rayOrig.z;
+						CalculateSideHit(glm::vec3(0.0, 0.0, z), dist, closest, distToOrig, cd.m_velocity.z, closestCollision);
 					}
-					else if (z == -1)
-					{
-						dist = pointOnRay.z - minPt.z;
-					}
-					float distToOrig = pointOnRay.z - cd.m_rayOrig.z;
-					CalculateSideHit(glm::vec3(0.0, 0.0, z), dist, closest, distToOrig, closestCollision);
 				}
 
 				// calculate ratio
@@ -398,9 +424,9 @@ void tOctree::RecordCollisionPointW(glm::vec3 start, glm::vec3 end, tCollisionDa
 				cd.m_plane = tPlane(closestCollision.first, ptOnPlane);
 				// find the one closest to the point in the box
 				// shortest distance from pointonray to each collided side
-				
 				// so and so forth... repeat for y and z
 			}
+			i++; // iterate
 		}
 	}
 	return;
@@ -414,13 +440,20 @@ int tOctree::GetQuadrant(glm::vec3 test, glm::vec3 center)
 	return ((4 * z) + (2 * y) + x);
 }
 
-void tOctree::CalculateSideHit(glm::vec3 plane, float dist, float closest, float distToRayOrig, 
+void tOctree::CalculateSideHit(glm::vec3 plane, float dist, float& closest, float distToRayOrig, float absDist, 
 							   std::pair<glm::vec3, float>& closestCollision)
 {
 	if (closest == 0.0f || abs(dist) < closest)
 	{
 		closestCollision.first = plane;
-		closest = dist;
-		closestCollision.second = (distToRayOrig - dist) / distToRayOrig;
+		closest = abs(dist);
+		closestCollision.second = (distToRayOrig - dist) / absDist; // this will yield the ratio of hit on plane to velocity
 	}
+}
+
+float tOctree::GetOutOfBox(float min, float max, float start, float vel)
+{
+	float ratioToMin = (min - start) / vel;
+	float ratioToMax = (max - start) / vel;
+	return ((glm::min(ratioToMin, ratioToMax) == ratioToMin) ? min : max);
 }

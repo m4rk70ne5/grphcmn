@@ -25,12 +25,14 @@ struct tPlane
 
 struct tCollisionData
 {
-	float m_closestHit;
+	float m_closestHit, m_offset;
 	tPlane m_plane;
 	glm::vec3 m_rayOrig; // the absolute start of the ray being tested
-	tCollisionData(glm::vec3 rayStart) : m_rayOrig(rayStart)
+	glm::vec3 m_velocity; // velocity of the whole original ray (used to determine actual ratios)
+	tCollisionData(glm::vec3 rayStart, glm::vec3 rayEnd, float closestHit = 1.0f, float offset = 1.0f) : m_rayOrig(rayStart), 
+		m_closestHit(closestHit), m_offset(offset)
 	{
-		m_closestHit = 1.0f;
+		m_velocity = rayEnd - rayStart;
 	}
 };
 

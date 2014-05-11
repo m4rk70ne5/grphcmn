@@ -1,23 +1,23 @@
-﻿Build started 5/7/2014 10:13:42 PM.
+﻿Build started 5/11/2014 10:45:27 AM.
      1>Project "C:\Users\Mark\documents\visual studio 2012\Projects\grphcmn\grphcmn\grphcmn.vcxproj" on node 2 (Build target(s)).
      1>InitializeBuildStatus:
          Creating "Debug\grphcmn.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt tCamera.cpp
          tCamera.cpp
-     1>c:\users\mark\documents\visual studio 2012\projects\grphcmn\grphcmn\tcamera.cpp(22): warning C4800: 'const Uint8' : forcing value to bool 'true' or 'false' (performance warning)
-     1>c:\users\mark\documents\visual studio 2012\projects\grphcmn\grphcmn\tcamera.cpp(23): warning C4800: 'const Uint8' : forcing value to bool 'true' or 'false' (performance warning)
      1>c:\users\mark\documents\visual studio 2012\projects\grphcmn\grphcmn\tcamera.cpp(24): warning C4800: 'const Uint8' : forcing value to bool 'true' or 'false' (performance warning)
      1>c:\users\mark\documents\visual studio 2012\projects\grphcmn\grphcmn\tcamera.cpp(25): warning C4800: 'const Uint8' : forcing value to bool 'true' or 'false' (performance warning)
+     1>c:\users\mark\documents\visual studio 2012\projects\grphcmn\grphcmn\tcamera.cpp(26): warning C4800: 'const Uint8' : forcing value to bool 'true' or 'false' (performance warning)
+     1>c:\users\mark\documents\visual studio 2012\projects\grphcmn\grphcmn\tcamera.cpp(27): warning C4800: 'const Uint8' : forcing value to bool 'true' or 'false' (performance warning)
          GLM: angleAxis function taking degrees as a parameter is deprecated. #define GLM_FORCE_RADIANS before including GLM headers to remove this message.
      1>c:\program files (x86)\microsoft visual studio 11.0\vc\include\glm\gtc\quaternion.inl(61): warning C4244: 'initializing' : conversion from 'const double' to 'float', possible loss of data
-                 c:\users\mark\documents\visual studio 2012\projects\grphcmn\grphcmn\tcamera.cpp(48) : see reference to function template instantiation 'glm::detail::tquat<T,P>::tquat<double,0>(const glm::detail::tquat<double,0> &)' being compiled
+                 c:\users\mark\documents\visual studio 2012\projects\grphcmn\grphcmn\tcamera.cpp(50) : see reference to function template instantiation 'glm::detail::tquat<T,P>::tquat<double,0>(const glm::detail::tquat<double,0> &)' being compiled
                  with
                  [
                      T=float,
                      P=0
                  ]
-                 c:\users\mark\documents\visual studio 2012\projects\grphcmn\grphcmn\tcamera.cpp(48) : see reference to function template instantiation 'glm::detail::tquat<T,P>::tquat<double,0>(const glm::detail::tquat<double,0> &)' being compiled
+                 c:\users\mark\documents\visual studio 2012\projects\grphcmn\grphcmn\tcamera.cpp(50) : see reference to function template instantiation 'glm::detail::tquat<T,P>::tquat<double,0>(const glm::detail::tquat<double,0> &)' being compiled
                  with
                  [
                      T=float,
@@ -46,4 +46,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:04.40
+Time Elapsed 00:00:04.59

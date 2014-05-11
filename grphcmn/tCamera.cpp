@@ -100,9 +100,9 @@ void tCamera::Update()
 
 	// do collision detection here
 	// cycle through all the "collidable" geometry (octree and bsp)
-	if (destPosition - origPosition != glm::vec3(0,0,0))
+	if (destPosition != origPosition)
 	{
-		tCollisionData cd(origPosition);
+		tCollisionData cd(origPosition, destPosition);
 		m_position = DetectCollision(origPosition, destPosition, cd);
 	}
 
@@ -153,15 +153,19 @@ void tCamera::SetCamUniform(int prog, std::string name)
 
 glm::vec3 tCamera::DetectCollision(glm::vec3 start, glm::vec3 end, tCollisionData& cd)
 {
+	// if it's very close to zero
+	// just return
+	if (glm::length(end - start) == 0)
+		return end;
+
 	// find the closest hit
-	glm::vec3 collisionPoint = end;
 	for (auto i = m_collidableGeo.begin(); i != m_collidableGeo.end(); i++)
 	{
-		(*i)->RecordCollisionPoint(start, collisionPoint, cd);
-		collisionPoint = start + (cd.m_closestHit * (collisionPoint - start));
+		(*i)->RecordCollisionPoint(start, end, cd);
 	}
+	glm::vec3 collisionPoint = start + (cd.m_closestHit * (end - start));
 
-	return collisionPoint;
+	// return collisionPoint;
 	// if no hit, return the end position
 	if (collisionPoint == end)
 		return end;
@@ -174,7 +178,7 @@ glm::vec3 tCamera::DetectCollision(glm::vec3 start, glm::vec3 end, tCollisionDat
        // vector must be pointing in the same general direction (towards the plane)]
 
 	   // clear cd
-	   tCollisionData newCd(collisionPoint); // new cd
+	   tCollisionData newCd(collisionPoint, newEnd); // new cd
        // recurse
        return DetectCollision(collisionPoint, newEnd, newCd);
    }

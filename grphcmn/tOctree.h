@@ -34,7 +34,8 @@ protected:
 	void SetExtents(tOctreeNode*, glm::vec3, glm::vec3);
 	static std::vector<int> CalculateSubDiv(tOctreeNode*, tMesh*);
 	static int GetQuadrant(glm::vec3 test, glm::vec3 center);
-	static void CalculateSideHit(glm::vec3, float, float, float, std::pair<glm::vec3, float>&);
+	static void CalculateSideHit(glm::vec3, float, float&, float, float, std::pair<glm::vec3, float>&);
+	static float GetOutOfBox(float, float, float, float);
 	std::vector<glm::vec3> m_vertexData; // for drawing
 	void AddPointsToBuffer(tOctreeNode*);
 	void RecordCollisionPointW(glm::vec3, glm::vec3, tCollisionData&, tOctreeNode* = NULL);
